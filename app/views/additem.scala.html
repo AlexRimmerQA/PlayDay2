@@ -1,0 +1,17 @@
+@(form: Form[Item])(implicit messages: Messages)
+
+@main("Add Item") {
+  <h1>Add</h1>
+
+  @helper.form(routes.Application.createItem()) {
+    @helper.inputText(form("id"), '_label -> "ID", '_showConstraints -> false)
+    @helper.inputText(form("name"), '_label -> "Name", '_showConstraints -> false)
+    @helper.inputText(form("description"), '_label -> "Description", '_showConstraints -> false)
+    @helper.inputText(form("maker"), '_label -> "Maker", '_showConstraints -> false)
+    @helper.inputText(form("warrentyTime"), '_label -> "Warrenty Time", '_showConstraints -> false)
+    @helper.inputText(form("price"), '_label -> "Price", '_showConstraints -> false)
+    @helper.inputText(form("discount"), '_label -> "Discount %", '_showConstraints -> false)
+    @helper.inputText(form("seller"), '_label -> "Seller", '_showConstraints -> false)
+    <button type="submit">Create Item</button>
+  }
+}

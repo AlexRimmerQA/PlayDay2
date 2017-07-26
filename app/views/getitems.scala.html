@@ -1,0 +1,36 @@
+@(items: Seq[Item])
+
+@main("Items") {
+
+  <h1>Items</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Maker</th>
+        <th>Warrenty</th>
+        <th>Price</th>
+        <th>Discount</th>
+        <th>Seller</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(item <- items) {
+        <tr>
+          <td>@(item.id)</td>
+          <td>@(item.name)</td>
+          <td>@(item.description)</td>
+          <td>@(item.maker)</td>
+          <td>@(item.warrentyTime)</td>
+          <td>£@(item.price)</td>
+          <td>@(item.discount)%</td>
+          <td>@(item.seller)</td>
+          <td><a href="/edititem?name=@item.name">Edit</a></td>
+        </tr>
+      }
+    </tbody>
+  </table>
+}
