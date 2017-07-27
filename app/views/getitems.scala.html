@@ -1,9 +1,7 @@
 @(items: Seq[Item])
 
 @main("Items") {
-
-  <h1>Items</h1>
-  <table>
+  <table class="table table-striped">
     <thead>
       <tr>
         <th>ID</th>
@@ -29,11 +27,11 @@
           <td>£@(item.price)</td>
           <td>@(item.discount)%</td>
           <td>@(item.seller)</td>
-          <td><a href="/edititem?id=@item.id"><button>Edit</button></a></td>
-          <td><a href="/deleteitem?id=@item.id"><button>Delete</button></a></td>
+          <td><a href="/edititem?id=@item.id"><button class="btn btn-primary btn-sm">Edit</button></a></td>
+          <td><a href="/deleteitem?id=@item.id"><button class="btn btn-primary btn-sm">Delete</button></a></td>
         </tr>
       }
     </tbody>
   </table>
-  <a href="/additem"><button>Add Item</button></a>
+  <a href="/additem"><button class="btn btn-primary btn-block">Add Item</button></a>
 }
