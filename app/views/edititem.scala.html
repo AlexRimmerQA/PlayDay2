@@ -1,13 +1,17 @@
-@(item: Item)
+@(form: Form[Item])(implicit messages: Messages)
 
 @main("Edit Item") {
   <h1>Edit</h1>
-  <h2>Item ID: @(item.id)</h2>
-  <h2>Item Name: @(item.name)</h2>
-  <h2>Item Description: @(item.description)</h2>
-  <h2>Item Maker: @(item.maker)</h2>
-  <h2>Item Warrenty: @(item.warrentyTime)</h2>
-  <h2>Item Price: @(item.price)</h2>
-  <h2>Item Discount: @(item.discount)</h2>
-  <h2>Item Seller: @(item.seller)</h2>
+
+  @helper.form(routes.Application.editItemData()) {
+    @helper.inputText(form("id"), '_label -> "ID", '_showConstraints -> false, 'readonly -> "readonly")
+    @helper.inputText(form("name"), '_label -> "Name", '_showConstraints -> false)
+    @helper.inputText(form("description"), '_label -> "Description", '_showConstraints -> false)
+    @helper.inputText(form("maker"), '_label -> "Maker", '_showConstraints -> false)
+    @helper.inputText(form("warrentyTime"), '_label -> "Warrenty Time", '_showConstraints -> false)
+    @helper.inputText(form("price"), '_label -> "Price", '_showConstraints -> false)
+    @helper.inputText(form("discount"), '_label -> "Discount %", '_showConstraints -> false)
+    @helper.inputText(form("seller"), '_label -> "Seller", '_showConstraints -> false)
+    <button type="submit">Edit Item</button>
+  }
 }

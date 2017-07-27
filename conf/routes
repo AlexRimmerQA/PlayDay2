@@ -10,8 +10,14 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 GET     /getitems                   controllers.Application.getItems
 
-GET     /edititem                   controllers.Application.editItem(name: Option[String])
+GET     /edititem                   controllers.Application.editItem(id: Option[Int])
+
+POST    /edititem                   controllers.Application.editItemData
 
 GET     /additem                    controllers.Application.addItem
 
 POST    /additem                    controllers.Application.createItem
+
+GET     /deleteitem                 controllers.Application.deleteItem(id: Option[Int])
+
+POST    /deleteitem                 controllers.Application.deleteItemData

@@ -1,0 +1,17 @@
+@(form: Form[Item])(implicit messages: Messages)
+
+@main("Delete Item") {
+  <h1>Delete</h1>
+
+  @helper.form(routes.Application.deleteItemData()) {
+    @helper.inputText(form("id"), '_label -> "ID", '_showConstraints -> false, 'readonly -> "readonly")
+    @helper.inputText(form("name"), '_label -> "Name", '_showConstraints -> false, 'readonly -> "readonly")
+    @helper.inputText(form("description"), '_label -> "Description", '_showConstraints -> false, 'readonly -> "readonly")
+    @helper.inputText(form("maker"), '_label -> "Maker", '_showConstraints -> false, 'readonly -> "readonly")
+    @helper.inputText(form("warrentyTime"), '_label -> "Warrenty Time", '_showConstraints -> false, 'readonly -> "readonly")
+    @helper.inputText(form("price"), '_label -> "Price", '_showConstraints -> false, 'readonly -> "readonly")
+    @helper.inputText(form("discount"), '_label -> "Discount %", '_showConstraints -> false, 'readonly -> "readonly")
+    @helper.inputText(form("seller"), '_label -> "Seller", '_showConstraints -> false, 'readonly -> "readonly")
+    <button type="submit">Delete Item</button>
+  }
+}
