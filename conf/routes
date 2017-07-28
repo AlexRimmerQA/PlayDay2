@@ -21,3 +21,11 @@ POST    /additem                    controllers.Application.createItem
 GET     /deleteitem                 controllers.Application.deleteItem(id: Option[Int])
 
 POST    /deleteitem                 controllers.Application.deleteItemData
+
+GET     /createperson               controllers.MyController.create
+
+GET     /findperson                 controllers.MyController.findByName
+
+GET     /updateperson               controllers.MyController.update
+
+#GET     /deleteperson               controllers.MyController.delete
