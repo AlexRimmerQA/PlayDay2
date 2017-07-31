@@ -28,4 +28,12 @@ GET     /findperson                 controllers.MyController.findByName
 
 GET     /updateperson               controllers.MyController.update
 
-#GET     /deleteperson               controllers.MyController.delete
+GET     /deleteperson               controllers.MyController.remove
+
+GET     /getlargefile               controllers.Application.returnLargeFile
+
+GET     /getservedfile              controllers.Application.returnServedFile
+
+GET     /downservedfile             controllers.Application.downServedFile
+
+GET     /chunkeddata                controllers.Application.chunkedData

@@ -2,7 +2,10 @@ package controllers
 
 import javax.inject.Inject
 
+import akka.stream.scaladsl.{FileIO, Source}
+import akka.util.ByteString
 import models.Item
+import play.api.http.HttpEntity
 import play.api.i18n.{I18nSupport, MessagesApi}
 import play.api.mvc._
 
@@ -62,5 +65,36 @@ class Application @Inject()(val messagesApi: MessagesApi) extends Controller wit
       Item.items.remove(Item.items.indexWhere(listItem => listItem.id == item.id))
       Redirect(routes.Application.getItems())
     })
+  }
+
+  def returnLargeFile() : Action[AnyContent] = Action {
+    val file = new java.io.File("public/files/fileToServe.pdf")
+    val path: java.nio.file.Path = file.toPath
+    val source: Source[ByteString, _] = FileIO.fromPath(path)
+
+    val contentLength = Some(file.length())
+    Result(
+      header = ResponseHeader(200, Map.empty),
+      body = HttpEntity.Streamed(source, contentLength, Some("application/pdf"))
+    )
+  }
+
+  def returnServedFile() : Action[AnyContent] = Action {
+    Ok.sendFile(
+      content = new java.io.File("public/files/fileToServe.pdf"),
+      fileName = _ => "justABigFile.pdf"
+    )
+  }
+
+  def downServedFile() : Action[AnyContent] = Action {
+    Ok.sendFile(
+      content = new java.io.File("public/files/fileToServe.pdf"),
+      inline = false
+    )
+  }
+
+  def chunkedData() : Action[AnyContent] = Action {
+    val source = Source.apply(List("kiki", "foo", "bar"))
+    Ok.chunked(source)
   }
 }

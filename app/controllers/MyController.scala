@@ -36,12 +36,18 @@ class MyController @Inject() (val reactiveMongoApi: ReactiveMongoApi) extends Co
 
   def update : Action[AnyContent] = Action.async { implicit request =>
     val user = User(29, "FirstName", "LastNaem", List(Feed("BBC news", "http://www.bbc.co.uk")))
-    Console.println(user)
     val modifier = Json.obj("$set" -> Json.obj("lastName" -> user.lastName))
-    Console.println(modifier)
     val futureResult = collection.flatMap(_.update(Json.obj("lastName" -> "Lastname"), modifier))
     futureResult.map { _ =>
-      Console.println("Inside update, it found the match")
+      Redirect(routes.MyController.findByName())
+    }
+  }
+
+  def remove : Action[AnyContent] = Action.async { implicit request =>
+    val user = User(29, "FirstName", "LastNaem", List(Feed("BBC news", "http://www.bbc.co.uk")))
+    val modifier = Json.obj("$set" -> Json.obj("lastName" -> user.lastName))
+    val futureResult = collection.flatMap(_.remove(Json.obj("lastName" -> "LastNaem")))
+    futureResult.map { _ =>
       Redirect(routes.MyController.findByName())
     }
   }
